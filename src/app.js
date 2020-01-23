@@ -14,9 +14,9 @@ const store = configureStore();
 
 //console.log(store.getState());
 
-const jsx = ( 
-    <Provider store={ store }>
-    <AppRouter />
+const jsx = (
+    <Provider store={store}>
+        <AppRouter />
     </Provider>
 );
 
