@@ -35,8 +35,28 @@ export const addExpense = (expense) => ({
 //     }
 // });
 
+// export const startAddExpense = (expenseData = {}) => {
+//     // action generator returns function, just going to work thanks to redux thunk
+//     return (dispatch) => {
+//         const {
+//             description = '',
+//                 note = '',
+//                 amount = 0,
+//                 createdAt = 0
+//         } = expenseData;
+//         const expense = { description, note, amount, createdAt };
+//         // function runs, has the ability to dispatch other actions and do whatever it wants. Here we put FireBase code, like push
+//         database.ref('expenses').push(expense).then((ref) => {
+//             // function returns an object that chnges the redux store
+//             dispatch(addExpense({
+//                 id: ref.key,
+//                 ...expense
+//             }));
+//         })
+//     }
+// }
+
 export const startAddExpense = (expenseData = {}) => {
-    // action generator returns function, just going to work thanks to redux thunk
     return (dispatch) => {
         const {
             description = '',
@@ -45,16 +65,15 @@ export const startAddExpense = (expenseData = {}) => {
                 createdAt = 0
         } = expenseData;
         const expense = { description, note, amount, createdAt };
-        // function runs, has the ability to dispatch other actions and do whatever it wants. Here we put FireBase code, like push
-        database.ref('expenses').push(expense).then((ref) => {
-            // function returns an object that chnges the redux store
+
+        return database.ref('expenses').push(expense).then((ref) => {
             dispatch(addExpense({
                 id: ref.key,
                 ...expense
             }));
-        })
-    }
-}
+        });
+    };
+};
 
 //REMOVE_EXPENSE
 export const removeExpense = ({ id } = {}) => ({
