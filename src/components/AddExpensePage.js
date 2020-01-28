@@ -10,9 +10,9 @@ export class AddExpensePage extends React.Component {
   };
   render() {
     return (
-      <div classname="page-header">
-        <div classname="content-container">
-          <h1 classname="page-header__title">Add Expense</h1>
+      <div className="page-header">
+        <div className="content-container">
+          <h1 className="page-header__title">Add Expense</h1>
         </div>
         <div className="content-container">
           <ExpenseForm
